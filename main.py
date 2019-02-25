@@ -1,8 +1,7 @@
+#Flight Data Calculator
+
 import numpy as np
 import csv
-
-
-
 
 #Different Calculations
 
