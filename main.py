@@ -4,11 +4,11 @@ import csv
 
 
 
-#gives airspeed
+#Different Calculations
+
 def airSpeed(distance, deltaIngestTime):
     return (3600*1000*distance)/deltaIngestTime
 
-#gives distance 
 def distance(lat1, lon1, lat2, lon2):
     MILES = 3959
     lat1, lon1, lat2, lon2 = map(np.deg2rad, [lat1, lon1, lat2, lon2])
@@ -45,6 +45,9 @@ def deltaMessageTime(messageDateTime1, messageDateTime2):
 def deltaClimbRate(verticalClimbRate1, verticalClimbRate2):
     return minusfunct(verticalClimbRate1, verticalClimbRate2)
 
+#Unpacking data from Sample CSV file then creating new CSV file to store new outputs.
+#New outputs are then going to be used for Neural Network Model. 
+
 def main():
     (aircraftIdentifier,callSign,altitude,
     groundSpeed,ingestDateTime,latitude,
@@ -59,7 +62,7 @@ def main():
         newFileWriter.writerow(['RowID','DeltaAltitude','DerivedClimbRate',
         'DeltaGroundSpeed','DeltaIngestTime','DeltaLatitude','DeltaLongitude',
         'DeltaMessageTime','DeltaClimbRate','Distance (KM)','AirSpeed (km/Hour)']) 
-        x=1 #need to skip header 
+        x=1 #Skips Header
         with open ('sampleFlightData.csv', 'r') as tmp: #opens original csv file
             for row in range(1,len(altitude)-1): #for every row in original csv file
                 newFileWriter.writerow([  #Writes function to each row
